@@ -3,6 +3,7 @@ package net.sf.appstatus.camel.check;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.Properties;
 
 import org.apache.camel.ServiceStatus;
@@ -20,8 +21,6 @@ public class RoutesAliveCheck extends AbstractCheck {
 
     private static final String BALISE_BR = "<br/>";
 
-    private static final String TRANSFERT_SFTP = "transfert-sftp";
-
     private static final Logger LOGGER = LoggerFactory.getLogger(RoutesAliveCheck.class);
 
     private int delay = 1;
@@ -29,7 +28,7 @@ public class RoutesAliveCheck extends AbstractCheck {
     private int limitError = 720000000;
 
     @Override
-    public ICheckResult checkStatus() {
+    public ICheckResult checkStatus(Locale locale) {
         ICheckResult result = null;
         try {
 
@@ -39,8 +38,7 @@ public class RoutesAliveCheck extends AbstractCheck {
             List<ManagedRouteMBean> routes = JMXHelper.getRegisteredRoutes();
             for (ManagedRouteMBean route : routes) {
 
-                if (!route.getState().equals(ServiceStatus.Started.name())
-                        && !route.getRouteId().startsWith(TRANSFERT_SFTP)) {
+                if (!route.getState().equals(ServiceStatus.Started.name())) {
                     errors.add("Route <b>" + route.getCamelId() + "#" + route.getRouteId() + "</b> is not Started");
                 } else {
 
