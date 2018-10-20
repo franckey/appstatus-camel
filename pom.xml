@@ -2,7 +2,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>appstatus-camel</groupId>
     <artifactId>appstatus-camel</artifactId>
-    <version>0.0.2</version>
+    <version>1.0.0</version>
 
     <properties>
         <maven.compiler.plugin.version>3.7.0</maven.compiler.plugin.version>
