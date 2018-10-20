@@ -1,15 +1,15 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>appstatus-camel</groupId>
     <artifactId>appstatus-camel</artifactId>
     <version>0.0.2</version>
 
     <properties>
-        <maven.compiler.plugin>3.7.0</maven.compiler.plugin>
+        <maven.compiler.plugin.version>3.7.0</maven.compiler.plugin.version>
+        <maven.dependency.check.version>3.3.2</maven.dependency.check.version>
         <appstatus.version>2.0</appstatus.version>
         <spring.version>4.2.4.RELEASE</spring.version>
-        <camel.version>2.17.3</camel.version>
+        <camel.version>2.22.1</camel.version>
         <commons.collections.version>3.2.2</commons.collections.version>
     </properties>
 
@@ -27,11 +27,26 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>${maven.compiler.plugin}</version>
+                <version>${maven.compiler.plugin.version}</version>
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.owasp</groupId>
+                <artifactId>dependency-check-maven</artifactId>
+                <version>${maven.dependency.check.version}</version>
+                <configuration>
+                    <failBuildOnCVSS>10</failBuildOnCVSS>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
